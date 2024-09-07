@@ -4,10 +4,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   token: localStorage.getItem('token') || null,
   isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
-  name: localStorage.getItem('name') || '',
   userName: localStorage.getItem('userName') || '',
-  firstName: localStorage.getItem('firstName') || '', // Ajout de firstName dans l'état initial
-  lastName: localStorage.getItem('lastName') || '', // Ajout de lastName dans l'état initial
+  firstName: localStorage.getItem('firstName') || '',
+  lastName: localStorage.getItem('lastName') || '',
 };
 
 const userSlice = createSlice({
@@ -17,47 +16,41 @@ const userSlice = createSlice({
     login: (state, action) => {
       state.token = action.payload.token;
       state.isAuthenticated = true;
-      state.name = action.payload.name;
       state.userName = action.payload.userName;
-      state.firstName = action.payload.firstName; // Ajout de firstName lors de la connexion
-      state.lastName = action.payload.lastName; // Ajout de lastName lors de la connexion
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
 
       // Sauvegarder les informations dans le localStorage
       localStorage.setItem('token', state.token);
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('name', state.name);
       localStorage.setItem('userName', state.userName);
-      localStorage.setItem('firstName', state.firstName); // Sauvegarde de firstName dans le localStorage
-      localStorage.setItem('lastName', state.lastName); // Sauvegarde de lastName dans le localStorage
+      localStorage.setItem('firstName', state.firstName);
+      localStorage.setItem('lastName', state.lastName);
     },
     logout: (state) => {
       state.token = null;
       state.isAuthenticated = false;
-      state.name = '';
       state.userName = '';
-      state.firstName = ''; // Réinitialiser firstName lors de la déconnexion
-      state.lastName = ''; // Réinitialiser lastName lors de la déconnexion
+      state.firstName = '';
+      state.lastName = '';
 
       // Supprimer les informations du localStorage
       localStorage.removeItem('token');
       localStorage.removeItem('isAuthenticated');
-      localStorage.removeItem('name');
       localStorage.removeItem('userName');
-      localStorage.removeItem('firstName'); // Supprimer firstName du localStorage
-      localStorage.removeItem('lastName'); // Supprimer lastName du localStorage
+      localStorage.removeItem('firstName');
+      localStorage.removeItem('lastName');
     },
-    // Met à jour le nom, le pseudo, le prénom et le nom de famille
+    // Met à jour le pseudo, le prénom et le nom de famille
     setUserProfile: (state, action) => {
-      state.name = action.payload.name;
       state.userName = action.payload.userName;
-      state.firstName = action.payload.firstName; // Mise à jour de firstName
-      state.lastName = action.payload.lastName; // Mise à jour de lastName
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
 
-      // Met à jour le nom, le pseudo, le prénom et le nom de famille dans le localStorage
-      localStorage.setItem('name', state.name);
+      // Met à jour le pseudo, le prénom et le nom de famille dans le localStorage
       localStorage.setItem('userName', state.userName);
-      localStorage.setItem('firstName', state.firstName); // Sauvegarde de firstName dans le localStorage
-      localStorage.setItem('lastName', state.lastName); // Sauvegarde de lastName dans le localStorage
+      localStorage.setItem('firstName', state.firstName);
+      localStorage.setItem('lastName', state.lastName);
     },
   },
 });

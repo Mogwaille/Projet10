@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/userSlice';
-import argentBankLogo from '../img/argentBankLogo.png';
+import argentBankLogo from '../img/argentBankLogo.webp';
 
 
 const UserHeader = () => {
